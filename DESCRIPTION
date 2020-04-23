@@ -1,0 +1,11 @@
+Package: FredsStatsPack
+Type: Package
+Title: Fred's versions of various statistics functions
+Version: 1.0
+Date: 2020-04-20
+Author: Frederick T. Kaesmann, Jr.
+Maintainer:Fred <fredkaesmannjr@gmail.com>
+Description: Pretty much just ANOVA for now
+License: MIT License
+Imports: Rcpp (>= 1.0.4)
+LinkingTo: Rcpp, RcppArmadillo
