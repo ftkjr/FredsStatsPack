@@ -5,7 +5,7 @@
 // [[Rcpp::export]]
 
 double Freds_2SampleTtest(const arma::colvec & x1,
-                   const arma::colvec & x2) {
+                          const arma::colvec & x2) {
     int n1, n2;
     double xbar1, xbar2, v1, v2, t;
     n1 = x1.size();
