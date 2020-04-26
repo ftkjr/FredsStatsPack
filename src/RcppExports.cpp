@@ -18,6 +18,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// Rsquared
+double Rsquared(double SSx, double SSy, double SSxy);
+RcppExport SEXP _FredsStatsPack_Rsquared(SEXP SSxSEXP, SEXP SSySEXP, SEXP SSxySEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type SSx(SSxSEXP);
+    Rcpp::traits::input_parameter< double >::type SSy(SSySEXP);
+    Rcpp::traits::input_parameter< double >::type SSxy(SSxySEXP);
+    rcpp_result_gen = Rcpp::wrap(Rsquared(SSx, SSy, SSxy));
+    return rcpp_result_gen;
+END_RCPP
+}
 // SigmaTau
 double SigmaTau(arma::vec mu);
 RcppExport SEXP _FredsStatsPack_SigmaTau(SEXP muSEXP) {
@@ -30,12 +43,12 @@ BEGIN_RCPP
 END_RCPP
 }
 // Sum_Squares
-double Sum_Squares(arma::vec x);
+double Sum_Squares(const arma::colvec& x);
 RcppExport SEXP _FredsStatsPack_Sum_Squares(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::vec >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const arma::colvec& >::type x(xSEXP);
     rcpp_result_gen = Rcpp::wrap(Sum_Squares(x));
     return rcpp_result_gen;
 END_RCPP
@@ -115,6 +128,7 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_FredsStatsPack_Freds_2SampleTtest", (DL_FUNC) &_FredsStatsPack_Freds_2SampleTtest, 2},
+    {"_FredsStatsPack_Rsquared", (DL_FUNC) &_FredsStatsPack_Rsquared, 3},
     {"_FredsStatsPack_SigmaTau", (DL_FUNC) &_FredsStatsPack_SigmaTau, 1},
     {"_FredsStatsPack_Sum_Squares", (DL_FUNC) &_FredsStatsPack_Sum_Squares, 1},
     {"_FredsStatsPack_TukeysQ", (DL_FUNC) &_FredsStatsPack_TukeysQ, 4},

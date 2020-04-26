@@ -1,0 +1,39 @@
+---
+title: "Freds Two Sample T-test"
+output:
+  pdf_document: default
+  html_notebook: default
+date: "April 2020"
+---
+
+
+
+```{r package_and_data}
+##### Packages ####
+library(FredsStatsPack)
+
+##### Data ####
+data(CO2)
+```
+
+
+```{r numeric_vectors}
+##### Two Numeric Vectors ####
+x_1 <- CO2$uptake[CO2$Type == "Mississippi"]
+
+x_2 <- CO2$uptake[CO2$Type == "Quebec"]
+```
+
+
+```{r t_stat}
+##### Freds Two Sample T-test ####
+t_statistic <- Freds_2SampleTtest(x_1, x_2)
+print(t_statistic)
+```
+
+```{r p_val}
+##### p-value ####
+# Figure it out for yourself
+pnorm(t_statistic)
+```
+

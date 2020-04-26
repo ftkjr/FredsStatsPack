@@ -5,6 +5,10 @@ Freds_2SampleTtest <- function(x1, x2) {
     .Call(`_FredsStatsPack_Freds_2SampleTtest`, x1, x2)
 }
 
+Rsquared <- function(SSx, SSy, SSxy) {
+    .Call(`_FredsStatsPack_Rsquared`, SSx, SSy, SSxy)
+}
+
 SigmaTau <- function(mu) {
     .Call(`_FredsStatsPack_SigmaTau`, mu)
 }
