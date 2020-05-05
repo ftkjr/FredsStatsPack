@@ -6,6 +6,33 @@
 
 using namespace Rcpp;
 
+// EffectSize_t
+double EffectSize_t(double mu1, double mu2, double sigma);
+RcppExport SEXP _FredsStatsPack_EffectSize_t(SEXP mu1SEXP, SEXP mu2SEXP, SEXP sigmaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type mu1(mu1SEXP);
+    Rcpp::traits::input_parameter< double >::type mu2(mu2SEXP);
+    Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP);
+    rcpp_result_gen = Rcpp::wrap(EffectSize_t(mu1, mu2, sigma));
+    return rcpp_result_gen;
+END_RCPP
+}
+// Effect_Size
+double Effect_Size(double pi, double mu1, double mu, double sigma);
+RcppExport SEXP _FredsStatsPack_Effect_Size(SEXP piSEXP, SEXP mu1SEXP, SEXP muSEXP, SEXP sigmaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type pi(piSEXP);
+    Rcpp::traits::input_parameter< double >::type mu1(mu1SEXP);
+    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
+    Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP);
+    rcpp_result_gen = Rcpp::wrap(Effect_Size(pi, mu1, mu, sigma));
+    return rcpp_result_gen;
+END_RCPP
+}
 // Freds_2SampleTtest
 double Freds_2SampleTtest(const arma::colvec& x1, const arma::colvec& x2);
 RcppExport SEXP _FredsStatsPack_Freds_2SampleTtest(SEXP x1SEXP, SEXP x2SEXP) {
@@ -15,6 +42,20 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const arma::colvec& >::type x1(x1SEXP);
     Rcpp::traits::input_parameter< const arma::colvec& >::type x2(x2SEXP);
     rcpp_result_gen = Rcpp::wrap(Freds_2SampleTtest(x1, x2));
+    return rcpp_result_gen;
+END_RCPP
+}
+// PhiSquared_D
+double PhiSquared_D(int a, int n, double D, double sigma);
+RcppExport SEXP _FredsStatsPack_PhiSquared_D(SEXP aSEXP, SEXP nSEXP, SEXP DSEXP, SEXP sigmaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type a(aSEXP);
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    Rcpp::traits::input_parameter< double >::type D(DSEXP);
+    Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP);
+    rcpp_result_gen = Rcpp::wrap(PhiSquared_D(a, n, D, sigma));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -31,14 +72,14 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// SigmaTau
-double SigmaTau(arma::vec mu);
-RcppExport SEXP _FredsStatsPack_SigmaTau(SEXP muSEXP) {
+// SigmaTau_fromMeans
+double SigmaTau_fromMeans(const arma::colvec& mu);
+RcppExport SEXP _FredsStatsPack_SigmaTau_fromMeans(SEXP muSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::vec >::type mu(muSEXP);
-    rcpp_result_gen = Rcpp::wrap(SigmaTau(mu));
+    Rcpp::traits::input_parameter< const arma::colvec& >::type mu(muSEXP);
+    rcpp_result_gen = Rcpp::wrap(SigmaTau_fromMeans(mu));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -127,9 +168,12 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_FredsStatsPack_EffectSize_t", (DL_FUNC) &_FredsStatsPack_EffectSize_t, 3},
+    {"_FredsStatsPack_Effect_Size", (DL_FUNC) &_FredsStatsPack_Effect_Size, 4},
     {"_FredsStatsPack_Freds_2SampleTtest", (DL_FUNC) &_FredsStatsPack_Freds_2SampleTtest, 2},
+    {"_FredsStatsPack_PhiSquared_D", (DL_FUNC) &_FredsStatsPack_PhiSquared_D, 4},
     {"_FredsStatsPack_Rsquared", (DL_FUNC) &_FredsStatsPack_Rsquared, 3},
-    {"_FredsStatsPack_SigmaTau", (DL_FUNC) &_FredsStatsPack_SigmaTau, 1},
+    {"_FredsStatsPack_SigmaTau_fromMeans", (DL_FUNC) &_FredsStatsPack_SigmaTau_fromMeans, 1},
     {"_FredsStatsPack_Sum_Squares", (DL_FUNC) &_FredsStatsPack_Sum_Squares, 1},
     {"_FredsStatsPack_TukeysQ", (DL_FUNC) &_FredsStatsPack_TukeysQ, 4},
     {"_FredsStatsPack_rcpparma_hello_world", (DL_FUNC) &_FredsStatsPack_rcpparma_hello_world, 0},
